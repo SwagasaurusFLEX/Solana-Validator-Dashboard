@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: raw
+    database: "{{ env_var('GCP_PROJECT_ID') }}"
+    schema: "{{ env_var('BQ_DATASET_WAREHOUSE') }}"
+    tables:
+      - name: raw_block_rewards
+        description: "Raw validator reward events from Solana public dataset"
+      - name: raw_blocks
+        description: "Raw block data from Solana public dataset"
+      - name: raw_sol_price
+        description: "Daily SOL/USD price from CoinGecko"

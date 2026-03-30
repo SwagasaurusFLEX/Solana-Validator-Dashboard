@@ -1,0 +1,19 @@
+config/gcp-key.json
+config/sa-key.json
+__pycache__/
+.env
+
+# Terraform state and secrets
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/*.tfvars
+terraform/.terraform.lock.hcl
+
+# Airflow logs
+airflow_logs/
+
+# dbt artifacts
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/

@@ -1,0 +1,7 @@
+
+
+project_id      = "gcp-Project-id"
+region          = "us-central1"
+location        = "US"
+gcs_bucket_name = "solana-validator-data-lake"
+bq_dataset_id   = "solana_validator_economics"

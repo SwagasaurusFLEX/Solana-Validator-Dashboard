@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: fct_validator_profitability
+    description: "Per-validator profitability analysis with break-even SOL prices"
+    columns:
+      - name: pubkey
+        description: "Validator public key"
+        tests:
+          - not_null
+
+  - name: fct_network_risk
+    description: "Daily network risk assessment based on validator economics"
+    columns:
+      - name: reward_date
+        description: "Date of the assessment"
+        tests:
+          - not_null
+
+  - name: fct_reward_concentration
+    description: "Daily reward concentration and Nakamoto coefficient"
+    columns:
+      - name: reward_date
+        description: "Date"
+        tests:
+          - not_null

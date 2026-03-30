@@ -1,0 +1,12 @@
+solana_validator_economics:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: "{{ env_var('GCP_PROJECT_ID') }}"
+      dataset: "{{ env_var('BQ_DATASET_WAREHOUSE') }}"
+      location: us-central1
+      keyfile: /opt/airflow/config/sa-key.json
+      threads: 4
+      timeout_seconds: 300
