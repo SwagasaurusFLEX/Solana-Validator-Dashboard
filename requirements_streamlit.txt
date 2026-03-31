@@ -1,5 +1,0 @@
-streamlit
-plotly
-google-cloud-bigquery
-pandas
-db-dtypes

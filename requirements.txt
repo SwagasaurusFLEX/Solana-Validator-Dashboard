@@ -1,6 +1,6 @@
-apache-airflow-providers-google==10.19.0
-google-cloud-storage
-google-cloud-bigquery-storage
-pyarrow
-requests
-dbt-bigquery==1.8.2
+streamlit
+plotly
+google-cloud-bigquery
+pandas>=2.2.0
+db-dtypes
+google-auth

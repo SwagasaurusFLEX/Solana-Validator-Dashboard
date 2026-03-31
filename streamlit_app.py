@@ -11,7 +11,12 @@ st.markdown(
     "economics are sustainable, and what happens to decentralization when they're not."
 )
 
-client = bigquery.Client()
+from google.oauth2 import service_account
+
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"]
+)
+client = bigquery.Client(credentials=credentials, project="zoomcamp-test-2")
 
 # Get current SOL price
 price_query = """
