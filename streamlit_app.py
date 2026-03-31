@@ -145,12 +145,14 @@ active_query = """
     SELECT reward_date, active_validators
     FROM `zoomcamp-test-2.solana_validator_economics.int_daily_network_stats`
     WHERE active_validators < 10000
+      AND reward_date >= '2026-01-01'
     ORDER BY reward_date
 """
 active_df = client.query(active_query).to_dataframe()
 
 fig4 = px.line(active_df, x="reward_date", y="active_validators",
                labels={"reward_date": "Date", "active_validators": "Active validators"})
+fig4.update_yaxes(range=[770, 820], title="Active validators")
 fig4.update_layout(margin=dict(t=20, b=20), height=350)
 st.plotly_chart(fig4, use_container_width=True)
 
