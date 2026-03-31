@@ -13,3 +13,4 @@ SELECT
 FROM {{ source('raw', 'raw_block_rewards') }}
 
 WHERE pubkey IS NOT NULL
+  AND reward_type = 'Voting'
