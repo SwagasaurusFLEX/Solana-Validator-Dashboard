@@ -2,13 +2,13 @@
 
 **Are validator economics a threat to Solana's decentralization?**
 
-A data engineering project analyzing on-chain Solana validator reward data to determine whether running a validator is economically sustainable, and what happens to network decentralization when it's not.
+A data engineering project analyzing on-chain Solana validator reward data to determine whether running a validator is economically sustainable, and how it effects decentralization. Ultimately I want to answer what happens when Solana becomes too centralized and how we go back to decentralization.
 
 ## Problem Statement
 
 Solana validators must pay ~1.1 SOL per day in voting transaction fees just to participate in consensus. At current SOL prices, that's roughly $88/day or $2,640/month — before any hardware costs. Meanwhile, validator rewards are heavily concentrated: the top 100 validators capture over 70% of all rewards, leaving the remaining 650+ validators to split the rest.
 
-The result? Solana's active validator count has dropped from ~2,500 in 2023 to roughly 750 in early 2026 — a 68% decline. The Nakamoto coefficient (minimum validators needed to control 33% of the network) has fallen into the concerning range of 15-19. This project uses real blockchain data to quantify the problem and model what protocol changes like the upcoming Alpenglow upgrade could do to fix it.
+The result? Solana's active validator count has dropped from ~2,500 in 2023 to roughly 750 in early 2026 — a 68% decline. The Nakamoto coefficient (minimum validators needed to control 33% of the network) has fallen into the concerning range of 15-19. Currently Solana is more centralized than it has been in years. There are real problems with that and we are hopeful that the upcoming Alpenglow upgrade will change things. This project uses real blockchain data to quantify the problem and model what protocol changes like the upcoming Alpenglow upgrade could do to fix it.
 
 ## Dashboard
 
@@ -19,7 +19,11 @@ The interactive Streamlit dashboard answers four key questions:
 3. **How decentralized is the network?** — Nakamoto coefficient tracked over time
 4. **Where are rewards going?** — Concentration analysis showing top 10/50/100 validator reward share
 
-> 🔗 **[Live Dashboard](#)** *(link to be added after deployment)*
+🔗 **[Live Dashboard](https://solana-validator-dashboard-7jlzowd9tcm93cafoend66.streamlit.app/)**
+
+![Underwater Validators](images/Underwater_validators.png)
+
+![Validator Count](images/Validator_count.png)
 
 ## Architecture
 
@@ -55,6 +59,8 @@ The interactive Streamlit dashboard answers four key questions:
                         │  (deployed)           │
                         └──────────────────────┘
 ```
+
+![Airflow DAG](images/Airflow_DAG.png)
 
 ## Tech Stack
 
@@ -103,6 +109,8 @@ Three layers of dbt models transform raw data into analytics-ready tables:
 - Tables partitioned by `block_timestamp` (monthly)
 - Block Rewards clustered by `pubkey` (validator public key)
 - This makes sense because downstream queries filter by date range and group by validator — partitioning reduces scan size and clustering speeds up per-validator aggregations
+
+![BigQuery](images/BigQuery.png)
 
 ## Key Findings
 
@@ -197,11 +205,9 @@ streamlit run streamlit_app.py
 ```
 
 ## Future Improvements (Attempt 2)
-- Add MEV/Jito tip analysis — how much do validators earn from transaction ordering vs inflation
-- Geographic concentration — map validator locations by data center and country
-- Model Alpenglow impact with real projected parameters
-- Track validator count daily to build a longer time series
-- Add sniper/bundle correlation analysis with validator concentration
+- will be analyzing how centralization affects current trading conditions within the solana ecosystem. 
+- Why Ethereum is history and the future of Solana
+- Alpenglow upgrade
 
 ## Course
 This project was built as the final capstone for the [Data Engineering Zoomcamp 2026](https://github.com/DataTalksClub/data-engineering-zoomcamp) by [DataTalks.Club](https://datatalks.club/).
