@@ -15,6 +15,7 @@ from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
+from extract_validator_snapshot import extract_validator_snapshot
 
 # Add scripts folder to path so we can import our extraction functions
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
@@ -105,6 +106,12 @@ with DAG(
         python_callable=extract_block_rewards,
     )
 
+    # Step 1b: Extract live validator snapshot from Solana RPC
+    task_extract_validators = PythonOperator(
+        task_id="extract_validator_snapshot",
+        python_callable=extract_validator_snapshot,
+    )
+
     # Step 2: Extract blocks from public dataset → staging + GCS
     task_extract_blocks = PythonOperator(
         task_id="extract_blocks",
@@ -131,4 +138,4 @@ with DAG(
 
     # Define the pipeline order
     # Extracts run in parallel, then load, then transform
-    [task_extract_rewards, task_extract_blocks, task_extract_price] >> task_load >> task_dbt
+    [task_extract_rewards, task_extract_blocks, task_extract_price, task_extract_validators] >> task_load >> task_dbt
