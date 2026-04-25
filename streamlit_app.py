@@ -472,13 +472,16 @@ st.header("5. Rewards are flowing to the top")
 st.markdown("How do validator rewards flow across the network?")
 
 conc_latest_query = """
-    SELECT 
+    SELECT
         ROUND(AVG(pct_rewards_top_10), 1) as top_10,
         ROUND(AVG(pct_rewards_top_50), 1) as top_50,
         ROUND(AVG(pct_rewards_top_100), 1) as top_100
     FROM `zoomcamp-test-2.solana_validator_economics.fct_reward_concentration`
     WHERE total_validators < 10000
-      AND reward_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)
+      AND reward_date >= (
+        SELECT DATE_SUB(MAX(reward_date), INTERVAL 30 DAY)
+        FROM `zoomcamp-test-2.solana_validator_economics.fct_reward_concentration`
+      )
 """
 conc_latest = client.query(conc_latest_query).to_dataframe().iloc[0]
 
