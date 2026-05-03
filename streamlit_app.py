@@ -601,4 +601,6 @@ st.markdown(f"""
 **When the next wave comes — and it will — it's going to be worse.** 770 Jito validators instead of 441. 98% block coverage. Every sniper more efficient and more embedded than last cycle. If retail gets burned worse than before, they won't come back. Not to memecoins. Not to Solana. Maybe not to crypto.
 
 **The fix isn't just better economics. It's competing infrastructure.** Validator software that doesn't sell transaction ordering. Systems that protect users instead of extracting from them. The market is wide open. Whoever builds it doesn't just build a business — they fix the trenches. And they might save crypto's shot at mainstream adoption.
+
+**That's why we're building [Ooze](https://ooze.run) — a fair-ordering validator client that replaces priority-fee auctions with quantum randomness. The mechanism Jito depends on, gone. The trenches, restored. [→ ooze.run](https://ooze.run)**
 """)
